@@ -10,6 +10,11 @@ describe('basket',function(){
         customer.name="Davide"
         customer.surname="de Lerma"
         customer.discountcard="yes"
+
+        wine = Object.create(null);
+        wine.name="wine"
+        wine.price = 45
+        wine.offer="no"
     });
 
    it ( 'basket should be empty at start', function(){
@@ -18,6 +23,7 @@ describe('basket',function(){
 
    it ('add item to basket', function(){
     var ham = Object.create(null)
+    ham.name="ham"
     ham.price = 12
     ham.offer="no"
     basket.add(ham);
@@ -26,6 +32,7 @@ describe('basket',function(){
 
    it ('remove item from basket', function(){
       var ham = Object.create(null);
+      ham.name="ham"
       ham.price = 12
       ham.offer="no"
       basket.remove(ham)
@@ -34,9 +41,11 @@ describe('basket',function(){
 
    it ('calulate total price of basket', function(){
       var cream = Object.create(null);
+      cream.name="cream"
       cream.price = 3
       cream.offer="no"
       var ham = Object.create(null);
+      ham.name="ham"
       ham.price = 12
       ham.offer="no"
       basket.items=[cream,ham]
@@ -45,8 +54,7 @@ describe('basket',function(){
    })
 
    it ('if price of basket higher than 40 discount 10%',function(){
-    var wine = Object.create(null);
-    wine.price = 45
+
     wine.offer="no"
     customer.discountcard="no"
     basket.add(wine)
@@ -60,10 +68,12 @@ describe('basket',function(){
    })
 
    it('buy one get one', function(){
-    basket.remove(wine)
-    var wine = Object.create(null);
-    wine.price = 45
-    wine.offer="yes"
+
+    basket.remove(wine);
+
+    wine.offer="yes";
+
+    console.log(basket.items)
     basket.add(wine)
     assert.equal(4,basket.items.length)
    })
